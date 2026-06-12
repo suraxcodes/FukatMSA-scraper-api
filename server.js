@@ -34,6 +34,9 @@ app.get('/scrape', async (req, res) => {
             releaseYear: parseInt(releaseYear),
             tmdbId: tmdbId
         };
+        if (req.query.imdbId && req.query.imdbId !== 'null' && req.query.imdbId !== '') {
+            media.imdbId = req.query.imdbId;
+        }
 
         if (type === 'show') {
             if (!season || !episode) {
@@ -48,7 +51,10 @@ app.get('/scrape', async (req, res) => {
         // Run all providers
         const results = await providers.runAll({
             media: media,
-            sourceOrder: ['vidsrc', 'flixhq', 'showbox', 'smashystream', 'vidsrcto']
+            sourceOrder: ['vidsrc', 'flixhq', 'showbox', 'smashystream', 'vidsrcto'],
+            events: {
+                update: (evt) => console.log(`[Scraper Update] ${evt.id}: ${evt.status} - ${evt.reason || evt.error || ''}`)
+            }
         });
 
         if (results && results.stream) {
