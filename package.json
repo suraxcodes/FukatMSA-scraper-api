@@ -11,6 +11,7 @@
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
+    "@consumet/extensions": "^1.8.8",
     "@movie-web/providers": "^2.4.13",
     "cors": "^2.8.6",
     "express": "^5.2.1",
