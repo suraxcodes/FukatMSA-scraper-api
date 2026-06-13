@@ -21,17 +21,14 @@ app.get('/scrape', async (req, res) => {
 
     let provider;
     switch(providerName?.toLowerCase()) {
-        case 'vidsrcto':
-            provider = new MOVIES.VidSrcTo();
-            break;
         case 'goku':
             provider = new MOVIES.Goku();
             break;
-        case 'zoechip':
-            provider = new MOVIES.Zoechip();
+        case 'sflix':
+            provider = new MOVIES.SFlix();
             break;
-        case 'smashystream':
-            provider = new MOVIES.SmashyStream();
+        case 'himovies':
+            provider = new MOVIES.HiMovies();
             break;
         case 'flixhq':
         default:
